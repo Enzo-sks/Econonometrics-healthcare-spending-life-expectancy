@@ -1,0 +1,37 @@
+Dear students,
+
+
+Overall, I think this is a good and interesting project, and I encourage you to continue working on it. I include a few comments in case they are useful.
+
+Why is the relevant explanatory variable the share of healthcare expenditure in total government expenditure, rather than the level of healthcare expenditure, perhaps per capita? Please motivate this choice.
+Explain more precisely what is included in this expenditure variable. For example, does it include research expenditure, treatments, drug development, hospitals, preventive care, etc.? What exactly are you trying to measure with it?
+I would be careful when interpreting differences between developed and developing countries as evidence of diminishing marginal returns. Comparing the slope across these two groups tells you whether the relationship differs across groups, but not necessarily whether the underlying relationship is curved. You may obtain a cleaner estimate of local diminishing returns by comparing countries within more similar groups, or by introducing a nonlinear specification.
+Relatedly, there may be spillovers across countries. For instance, medical treatments or drugs developed in richer countries may later benefit poorer countries, which makes the comparison between developed and developing countries more difficult to interpret.
+Make sure the motivating evidence is aligned with the research question. If your main explanatory variable is healthcare expenditure as a share of government expenditure, the descriptive analysis should use the same variable rather than expenditure in levels.
+Think carefully about the controls you include and explain why they belong in the regression. In particular, variables such as BMI may themselves be affected by healthcare expenditure.
+It is good that you identify reverse causality as an important limitation. You could potentially construct an indicator for major health shocks or catastrophic events in a given country-year and use it in the analysis or as a robustness check.
+Also think about whether life expectancy reacts quickly enough to annual changes in healthcare expenditure. Some effects may occur with a lag, so lagged expenditure could be worth considering.
+Overall, I think the project has a clear question and a feasible empirical strategy.
+
+
+Kind regards,
+Maxim
+总体而言，我认为这是一个优秀且有趣的项目，我鼓励你们继续推进。我附上了一些意见，希望能对你们有所帮助。
+
+为什么相关的解释变量是医疗保健支出占政府总支出的比例，而不是医疗保健支出的绝对水平（例如人均支出）？请说明这一选择的动机。
+
+请更准确地解释该支出变量包含哪些内容。例如，它是否包括研究支出、治疗、药物开发、医院、预防性护理等？你究竟想用它来衡量什么？
+
+在将发达国家和发展中国家之间的差异解释为边际收益递减的证据时，我会比较谨慎。比较这两组之间的斜率只能告诉你这种关系是否在组别之间存在差异，但不一定能说明潜在的关系是曲线的。你可以通过比较更相似组别内的国家，或者通过引入非线性设定，来获得对局部边际收益递减更清晰的估计。
+
+与此相关，国家之间可能存在溢出效应。例如，较富裕国家研发的医疗方法或药物可能随后使较贫穷国家受益，这使得发达国家和发展中国家之间的比较更难以解释。
+
+确保动机证据与研究问题保持一致。如果你主要的解释变量是医疗保健支出占政府支出的比例，那么描述性分析也应该使用相同的变量，而不是支出的绝对水平。
+
+仔细考虑你纳入的控制变量，并解释为什么它们应该包含在回归模型中。特别是像BMI这样的变量，其本身可能就会受到医疗保健支出的影响。
+
+你们能指出逆向因果关系是一个重要的局限性，这很好。你们可以尝试构建一个指标，用于衡量特定国家-年份中发生的重大健康冲击或灾难性事件，并将其用于分析或作为稳健性检验。
+
+同时请思考预期寿命对医疗保健支出的年度变化反应是否足够迅速。一些影响可能会有滞后性，因此滞后支出（lagged expenditure）是值得考虑的。
+
+总体而言，我认为该项目具有明确的研究问题和切实可行的实证策略。
