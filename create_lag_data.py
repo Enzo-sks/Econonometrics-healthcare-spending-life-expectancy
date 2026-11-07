@@ -4,6 +4,7 @@ import hashlib
 import json
 import argparse
 import pandas as pd
+from data_process import load_replaced_data
 
 ROOT=Path(__file__).resolve().parent
 
@@ -15,14 +16,12 @@ def main():
     if args.lag<1:
         raise ValueError('Lag must be positive')
     lag=args.lag
-    source=ROOT/'data/processed/data_merged.csv'
-    current=ROOT/'output/official_expenditure_ols/regression_sample.csv'
-    output=ROOT/f'data/processed/official_expenditure_model_lag{lag}.csv'
-    out=ROOT/('output/official_expenditure_lag_preparation' if lag==1 else f'output/official_expenditure_lag{lag}_preparation')
+    current=ROOT/'output/government_share_ols/regression_sample.csv'
+    out=ROOT/f'output/government_share_lag{lag}_preparation'
+    output=out/'regression_data.csv'
     out.mkdir(parents=True,exist_ok=True)
-    hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [source,current]}
-    full=pd.read_csv(source)
-    full.columns=full.columns.str.strip()
+    full,replacement_audit,source_paths=load_replaced_data()
+    hashes={**replacement_audit['input_hashes'],current.name:hashlib.sha256(current.read_bytes()).hexdigest()}
     sample=pd.read_csv(current)
     if full.duplicated(['Country','Year']).any():
         raise ValueError('Duplicate source keys')
@@ -38,11 +37,11 @@ def main():
     valid['expenditure_source_year']=valid.expenditure_source_year.astype(int)
     assert valid.Year.sub(valid.expenditure_source_year).eq(lag).all()
     valid.to_csv(output,index=False)
-    for p in [source,current]:
+    for p in [*source_paths,current]:
         assert hashes[p.name]==hashlib.sha256(p.read_bytes()).hexdigest()
     stats={'lag_years':lag,'initial_rows':len(sample),'removed_missing_lag':int(missing.sum()),'retained_rows':len(valid),
         'countries':int(valid.Country.nunique()),'excluded_reasons':dropped.reason.value_counts().to_dict(),
-        'source_hashes':hashes,'measure':'Government health expenditure (% GDP), SH.XPD.GHED.GD.ZS',
+        'source_hashes':hashes,'measure':'Domestic government health expenditure (% general government expenditure), SH.XPD.GHED.GE.ZS',
         'note':f'Retains no-lag complete cases for comparison; uses full source for exact t-{lag} matching.'}
     (out/'audit.json').write_text(json.dumps(stats,indent=2),encoding='utf-8')
     print(json.dumps(stats,indent=2))
